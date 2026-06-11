@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="km" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Village Road Enterprise | The Cold-Mix Eco-Patch</title>
+    <title>EcoBond | ពីកាកសំណល់ទៅជាផ្លូវស្អាត</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Importing Premium Fonts: Battambang for Khmer, Playfair for Gold Headers, Montserrat for clean body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Kantumruy Pro for elegant Khmer, Montserrat for EcoBond -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
@@ -18,324 +18,443 @@
                     colors: {
                         'eco-mint': '#E2F1E8',
                         'eco-paper': '#FDFBF7',
-                        'eco-gold': '#B59A5C',
+                        'eco-gold': '#D4AF37',
                         'eco-charcoal': '#2D2D2D',
                         'eco-forest': '#1A4A38',
-                        'eco-leaf': '#4A7C59'
+                        'eco-leaf': '#4A7C59',
+                        'eco-clay': '#C97A52'
                     },
                     fontFamily: {
-                        'khmer': ['Battambang', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Montserrat', 'sans-serif'],
+                        'khmer': ['"Kantumruy Pro"', 'sans-serif'],
+                        'en-bold': ['Montserrat', 'sans-serif'],
                     },
                     boxShadow: {
-                        'premium': '0 20px 40px -15px rgba(0,0,0,0.05)',
-                        'inner-premium': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)'
+                        'premium': '0 20px 40px -15px rgba(0,0,0,0.08)',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom subtle paper texture overlay */
         .bg-texture {
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
+        body { font-family: 'Kantumruy Pro', sans-serif; }
+        .en-font { font-family: 'Montserrat', sans-serif; }
         
-        /* Hide scrollbar for cleaner look but keep functionality */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FDFBF7; }
-        ::-webkit-scrollbar-thumb { background: #B59A5C; border-radius: 4px; }
+        /* Modal Animation */
+        .modal-enter { opacity: 0; transform: scale(0.95); }
+        .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .modal-exit { opacity: 1; transform: scale(1); }
+        .modal-exit-active { opacity: 0; transform: scale(0.95); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
-<body class="font-sans text-eco-charcoal antialiased bg-eco-paper bg-texture selection:bg-eco-gold selection:text-white">
+<body class="text-eco-charcoal antialiased bg-eco-paper bg-texture overflow-x-hidden">
 
-    <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 bg-eco-paper/90 backdrop-blur-md border-b border-eco-gold/20 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <!-- Mini Logo -->
-                <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-eco-forest">
-                    <path d="M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50C80 66.5685 66.5685 80 50 80C33.4315 80 20 66.5685 20 50Z" stroke="currentColor" stroke-width="4" stroke-dasharray="10 5"/>
-                    <path d="M30 50C30 38.9543 38.9543 30 50 30C61.0457 30 70 38.9543 70 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M50 70C38.9543 70 30 61.0457 30 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M75 25C65 25 55 35 55 45" stroke="#B59A5C" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M75 25C75 35 65 45 55 45" stroke="#B59A5C" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-                <span class="font-serif font-bold text-lg text-eco-charcoal hidden sm:block">Green Village Enterprise</span>
-            </div>
-            <div class="flex gap-6 font-medium text-sm">
-                <a href="#formula" class="hover:text-eco-gold transition-colors">The Formula</a>
-                <a href="#simulator" class="hover:text-eco-gold transition-colors">Impact Simulator</a>
-                <a href="#team" class="hover:text-eco-gold transition-colors">Our Team</a>
-            </div>
+    <!-- PAGE 1: HERO / SPLASH SCREEN -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center relative px-6 pt-10 pb-20">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] rounded-full bg-eco-mint/60 blur-3xl"></div>
+            <div class="absolute -bottom-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-eco-gold/10 blur-3xl"></div>
         </div>
-    </nav>
 
-    <!-- SECTION 1: HERO / SPLASH -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-eco-mint bg-texture relative overflow-hidden pt-20">
-        <!-- Decorative background elements -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-white/30 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-10 w-80 h-80 bg-eco-gold/10 rounded-full blur-3xl"></div>
-
-        <div class="text-center z-10 px-6 max-w-4xl mx-auto flex flex-col items-center">
-            <!-- Refined Artisan Logo -->
-            <div class="mb-8 relative">
-                <svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-eco-charcoal drop-shadow-lg">
-                    <!-- Road Loop -->
-                    <path d="M40 100 C 40 40, 100 40, 100 100 C 100 160, 160 160, 160 100 C 160 40, 100 40, 100 100 C 100 160, 40 160, 40 100 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M40 100 C 40 40, 100 40, 100 100 C 100 160, 160 160, 160 100 C 160 40, 100 40, 100 100 C 100 160, 40 160, 40 100 Z" stroke="currentColor" stroke-width="2" stroke-dasharray="8 8" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.85) translate(18, 18)"/>
-                    <!-- Leaf emerging from loop -->
-                    <path d="M130 70 C 130 70, 160 30, 180 50 C 180 50, 160 90, 130 70 Z" fill="#B59A5C" stroke="#B59A5C" stroke-width="2"/>
-                    <path d="M130 70 C 145 60, 160 55, 180 50" stroke="#FDFBF7" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+        <div class="max-w-4xl w-full mx-auto flex flex-col items-center text-center mt-10">
+            
+            <!-- User's Logo Placeholder -->
+            <div class="w-48 h-48 md:w-56 md:h-56 bg-white rounded-full shadow-premium border-4 border-eco-mint flex items-center justify-center p-2 mb-8 relative overflow-hidden">
+                <!-- Replace 'logo.jpg' with your actual image path when hosting -->
+                <img src="logo.jpg" alt="" class="w-full h-full object-contain rounded-full" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
+                
+                <!-- Fallback if image fails to load -->
+                <div id="fallback-logo" class="hidden absolute inset-0 bg-white flex-col items-center justify-center text-center p-4 rounded-full border-[6px] border-eco-leaf">
+                    <div class="w-full h-full rounded-full border-[2px] border-dashed border-eco-gold flex flex-col items-center justify-center">
+                        <i data-lucide="recycle" class="w-10 h-10 text-eco-forest mb-1"></i>
+                        <span class="text-[10px] font-bold text-eco-charcoal uppercase tracking-wider leading-tight">Rural-Urban<br>Recycling<br>Initiative</span>
+                    </div>
+                </div>
             </div>
 
-            <h1 class="font-khmer text-4xl md:text-6xl text-eco-gold mb-4 leading-tight tracking-wide drop-shadow-sm">សហគ្រាសបៃតងផ្លូវភូមិ</h1>
-            <h2 class="font-serif text-3xl md:text-5xl text-eco-charcoal mb-4 font-bold">Green Village Road Enterprise</h2>
-            <p class="text-lg md:text-xl text-eco-charcoal/80 mb-10 max-w-2xl font-medium tracking-wide">The Cold-Mix Eco-Patch</p>
+            <!-- Company Name -->
+            <h1 class="en-font text-5xl md:text-7xl text-eco-forest tracking-tight font-extrabold mb-4 drop-shadow-sm">EcoBond</h1>
             
-            <a href="#formula" class="bg-eco-forest text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-eco-charcoal transition-all duration-300 shadow-premium hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3">
-                Start Exploring <i data-lucide="arrow-down" class="w-5 h-5"></i>
+            <!-- Slogan & Topic -->
+            <div class="inline-block bg-eco-charcoal text-white px-6 py-2 rounded-full text-sm md:text-base font-semibold mb-6 tracking-wide shadow-md">
+                បោះជំហាន លើភាពបៃតង
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl text-eco-gold font-bold mb-6 leading-tight">
+                ពីកាកសំណល់ទៅជាផ្លូវស្អាត
+            </h2>
+            
+            <p class="text-lg md:text-xl text-eco-charcoal/80 max-w-2xl leading-relaxed mb-10">
+                យើងបំប្លែងកាកសំណល់ផ្លាស្ទិក និងកាកសំណល់កសិកម្ម ទៅជាសម្ភារៈសំណង់និងជួសជុលផ្លូវដ៏រឹងមាំ ប្រកបដោយនិរន្តរភាពសម្រាប់សហគមន៍កម្ពុជា។
+            </p>
+
+            <a href="#who-we-are" class="bg-eco-forest text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-eco-charcoal transition-all duration-300 shadow-premium hover:-translate-y-1 flex items-center gap-2">
+                មើលផលិតផល <i data-lucide="chevron-down" class="w-5 h-5"></i>
             </a>
         </div>
     </section>
 
-    <!-- SECTION 2: EDUCATION (THE 3RS) -->
-    <section id="formula" class="py-24 bg-eco-paper bg-texture">
-        <div class="max-w-5xl mx-auto px-6">
+    <!-- PAGE 2: WHO WE ARE -->
+    <section id="who-we-are" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-eco-gold font-bold tracking-widest uppercase text-sm mb-2 block">The Science</span>
-                <h2 class="font-serif text-4xl md:text-5xl text-eco-charcoal font-bold">The Zero-Heat Formula</h2>
-                <div class="w-24 h-1 bg-eco-gold mx-auto mt-6 rounded-full"></div>
+                <span class="en-font text-eco-gold font-bold tracking-widest uppercase text-sm mb-2 block">EcoBond</span>
+                <h2 class="text-4xl md:text-5xl text-eco-charcoal font-bold">នរណាជាពួកយើង?</h2>
+                <div class="w-24 h-1.5 bg-eco-leaf mx-auto mt-6 rounded-full"></div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-12 items-start relative">
-                <!-- Connection Line (Desktop only) -->
-                <div class="hidden md:block absolute top-24 left-[16%] right-[16%] h-0.5 bg-eco-gold/30 border-t-2 border-dashed border-eco-gold/30 z-0"></div>
-
-                <!-- Step 1 -->
-                <div class="flex flex-col items-center text-center relative z-10 group">
-                    <div class="w-32 h-32 rounded-full bg-white shadow-premium flex items-center justify-center mb-6 border-4 border-eco-mint group-hover:border-eco-gold transition-colors duration-500">
-                        <i data-lucide="flame" class="w-12 h-12 text-eco-gold mb-1"></i>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Reliable Products -->
+                <div class="bg-eco-paper p-10 rounded-[2rem] shadow-premium border border-eco-mint/50 group hover:border-eco-gold transition-colors duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-eco-mint flex items-center justify-center mb-6 group-hover:bg-eco-gold transition-colors duration-500">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-eco-forest group-hover:text-white transition-colors"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-eco-charcoal mb-3">1. Recycle</h3>
-                    <p class="text-eco-charcoal/70 leading-relaxed">Local farm waste (like rice husks) is burned entirely into <strong>Bio-Ash</strong>, creating a natural silica base.</p>
+                    <h3 class="text-2xl font-bold text-eco-charcoal mb-4">ផលិតផលគួរឱ្យទុកចិត្ត</h3>
+                    <p class="text-eco-charcoal/70 leading-relaxed text-lg">
+                        ផលិតផលរបស់យើងឆ្លងកាត់ដំណើរការលាយ និងសង្កត់យ៉ាងត្រឹមត្រូវតាមស្តង់ដារ ធានាបាននូវភាពរឹងមាំជាប់ធន់យូរអង្វែង មិនថាត្រូវកម្តៅថ្ងៃ ឬទឹកភ្លៀង។
+                    </p>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="flex flex-col items-center text-center relative z-10 group">
-                    <div class="w-32 h-32 rounded-full bg-white shadow-premium flex items-center justify-center mb-6 border-4 border-eco-mint group-hover:border-eco-leaf transition-colors duration-500">
-                        <i data-lucide="layers" class="w-12 h-12 text-eco-leaf mb-1"></i>
+                <!-- Accessible -->
+                <div class="bg-eco-paper p-10 rounded-[2rem] shadow-premium border border-eco-mint/50 group hover:border-eco-gold transition-colors duration-500">
+                    <div class="w-16 h-16 rounded-2xl bg-eco-mint flex items-center justify-center mb-6 group-hover:bg-eco-gold transition-colors duration-500">
+                        <i data-lucide="users" class="w-8 h-8 text-eco-forest group-hover:text-white transition-colors"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-eco-charcoal mb-3">2. Reuse</h3>
-                    <p class="text-eco-charcoal/70 leading-relaxed">Discarded plastic trash is collected and <strong>shredded</strong> into tiny pieces, acting as a flexible, durable filler.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="flex flex-col items-center text-center relative z-10 group">
-                    <div class="w-32 h-32 rounded-full bg-white shadow-premium flex items-center justify-center mb-6 border-4 border-eco-mint group-hover:border-eco-forest transition-colors duration-500">
-                        <i data-lucide="droplets" class="w-12 h-12 text-eco-forest mb-1"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-eco-charcoal mb-3">3. Reduce</h3>
-                    <p class="text-eco-charcoal/70 leading-relaxed">Mixed with cold water and <strong>local Lime</strong> (កំបោរស). It cures into a rock-solid patch. Zero industrial heat. Zero toxic fumes.</p>
+                    <h3 class="text-2xl font-bold text-eco-charcoal mb-4">ងាយស្រួលទទួលបាន</h3>
+                    <p class="text-eco-charcoal/70 leading-relaxed text-lg">
+                        ផលិតចេញពីវត្ថុធាតុដើមក្នុងស្រុក ដែលធ្វើឱ្យសហគមន៍ងាយស្រួលយកទៅប្រើប្រាស់ក្នុងការអភិវឌ្ឍន៍មូលដ្ឋាន ក្នុងតម្លៃសមរម្យបំផុត។
+                    </p>
                 </div>
             </div>
-            
-            <div class="mt-20 text-center">
-                <a href="#simulator" class="inline-flex items-center gap-2 text-eco-forest font-bold text-lg border-b-2 border-eco-forest pb-1 hover:text-eco-gold hover:border-eco-gold transition-colors">
-                    Test the Impact <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+            <div class="mt-16 text-center">
+                <a href="#innovations" class="inline-flex items-center gap-2 text-eco-forest font-bold text-xl border-b-2 border-eco-forest pb-1 hover:text-eco-gold hover:border-eco-gold transition-colors">
+                    ស្វែងយល់បន្ថែម <i data-lucide="arrow-right" class="w-6 h-6"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: IMPACT SIMULATOR -->
-    <section id="simulator" class="py-24 bg-eco-mint bg-texture relative">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            
-            <!-- Left Info -->
-            <div>
-                <span class="text-eco-gold font-bold tracking-widest uppercase text-sm mb-2 block">Interactive Tool</span>
-                <h2 class="font-serif text-4xl md:text-5xl text-eco-charcoal font-bold mb-6">Impact Simulator</h2>
-                <p class="text-lg text-eco-charcoal/80 mb-8 leading-relaxed">
-                    Calculate the real-world environmental and economic impact of your community's waste collection. See how much road can be repaired and how much income goes directly back to local farmers.
-                </p>
-                <div class="bg-white/60 p-6 rounded-2xl border border-white shadow-sm">
-                    <h4 class="font-bold text-eco-charcoal mb-2 flex items-center gap-2">
-                        <i data-lucide="info" class="w-5 h-5 text-eco-gold"></i> The Math Behind It
-                    </h4>
-                    <ul class="text-sm text-eco-charcoal/70 space-y-2">
-                        <li>• 10kg plastic + bio-ash yields ~5m² of road patch.</li>
-                        <li>• Local farmers are paid 1500 Riel (~$0.37) per kg of usable husk waste.</li>
-                    </ul>
-                </div>
+    <!-- PAGE 3: INNOVATIONS -->
+    <section id="innovations" class="py-24 bg-eco-mint/30 bg-texture">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl text-eco-charcoal font-bold leading-tight">
+                    នវានុវត្តន៍ជាក់ស្តែង<br><span class="text-eco-forest">ឥទ្ធិពលក្នុងពិភពពិត</span>
+                </h2>
             </div>
 
-            <!-- Right Calculator Card -->
-            <div class="bg-eco-paper rounded-[32px] p-8 md:p-10 shadow-premium border border-white relative overflow-hidden">
-                <!-- Decorative subtle watermark -->
-                <i data-lucide="calculator" class="absolute -right-10 -bottom-10 w-64 h-64 text-eco-gold opacity-5 rotate-12 pointer-events-none"></i>
+            <div class="grid lg:grid-cols-3 gap-8">
                 
-                <form id="impact-form" class="relative z-10 space-y-6" onsubmit="event.preventDefault(); calculateImpact();">
-                    
-                    <div>
-                        <label class="block text-sm font-bold text-eco-charcoal mb-2 ml-1">Plastic Waste Collected</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i data-lucide="recycle" class="h-5 w-5 text-eco-gold"></i>
-                            </div>
-                            <input type="number" id="plastic-input" required min="0" step="0.1" placeholder="Enter kg of plastic..." 
-                                class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-eco-gold focus:border-eco-gold outline-none transition-all shadow-inner-premium text-lg font-medium text-eco-charcoal placeholder-gray-400">
-                        </div>
+                <!-- Our Process Card -->
+                <div class="bg-white rounded-3xl p-8 shadow-premium flex flex-col h-full border border-gray-100">
+                    <div class="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                        <i data-lucide="settings" class="w-7 h-7 text-eco-charcoal"></i>
                     </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-eco-charcoal mb-2 ml-1">Farm Waste Collected</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i data-lucide="wheat" class="h-5 w-5 text-eco-gold"></i>
-                            </div>
-                            <input type="number" id="farm-input" required min="0" step="0.1" placeholder="Enter kg of farm waste..." 
-                                class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-eco-gold focus:border-eco-gold outline-none transition-all shadow-inner-premium text-lg font-medium text-eco-charcoal placeholder-gray-400">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-eco-forest text-white py-4 rounded-xl font-bold text-lg hover:bg-eco-charcoal transition-colors shadow-lg hover:shadow-xl active:scale-[0.98]">
-                        Calculate Impact
+                    <h3 class="text-2xl font-bold text-eco-charcoal mb-3">ដំណើរការរបស់យើង</h3>
+                    <p class="text-eco-charcoal/70 mb-8 flex-grow">ស្វែងយល់ពីបច្ចេកវិទ្យាកែច្នៃកាកសំណល់ដោយមិនប្រើកម្តៅខ្លាំង និងការសង្កត់ដោយចំហាយទឹក។</p>
+                    <button onclick="openModal('process-modal')" class="w-full py-4 rounded-xl font-bold text-eco-forest bg-eco-mint hover:bg-eco-forest hover:text-white transition-colors flex justify-center items-center gap-2">
+                        ស្វែងយល់ពីដំណើរការ <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
                     </button>
-                </form>
+                </div>
 
-                <!-- Results Area (Hidden Initially) -->
-                <div id="results-area" class="mt-8 pt-8 border-t border-gray-200 hidden opacity-0 transition-opacity duration-500">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
-                            <div class="w-10 h-10 rounded-full bg-eco-mint flex items-center justify-center mb-3">
-                                <i data-lucide="map" class="w-5 h-5 text-eco-forest"></i>
-                            </div>
-                            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Road Patched</span>
-                            <span id="result-sqm" class="text-2xl font-serif font-bold text-eco-charcoal">0 m²</span>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
-                            <div class="w-10 h-10 rounded-full bg-[#fdf2e9] flex items-center justify-center mb-3">
-                                <i data-lucide="banknote" class="w-5 h-5 text-eco-gold"></i>
-                            </div>
-                            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Farmer Income</span>
-                            <span id="result-income" class="text-2xl font-serif font-bold text-eco-gold">$0.00</span>
-                        </div>
+                <!-- Our Products Card -->
+                <div class="bg-eco-forest rounded-3xl p-8 shadow-premium flex flex-col h-full transform lg:-translate-y-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                    <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mb-6 backdrop-blur-sm">
+                        <i data-lucide="layers" class="w-7 h-7 text-white"></i>
                     </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">ផលិតផលរបស់យើង</h3>
+                    <p class="text-white/80 mb-8 flex-grow">សម្ភារៈជួសជុលផ្លូវ (Liquid Pave) និងក្បឿងក្រាលបាត (Dry Pave) ដែលមិនប៉ះពាល់ដល់បរិស្ថាន។</p>
+                    <button onclick="openModal('products-modal')" class="w-full py-4 rounded-xl font-bold text-eco-charcoal bg-eco-gold hover:bg-white transition-colors flex justify-center items-center gap-2 shadow-lg">
+                        មើលផលិតផលរបស់យើង <i data-lucide="calculator" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Impact Card -->
+                <div class="bg-white rounded-3xl p-8 shadow-premium flex flex-col h-full border border-gray-100">
+                    <div class="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center mb-6">
+                        <i data-lucide="globe-2" class="w-7 h-7 text-eco-clay"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-eco-charcoal mb-3">ឥទ្ធិពលរបស់យើង</h3>
+                    <p class="text-eco-charcoal/70 mb-8 flex-grow">ការផ្លាស់ប្តូរវិជ្ជមានដែលយើងបានបង្កើតចំពោះបរិស្ថាន សេដ្ឋកិច្ច សហគមន៍ និងសង្គម។</p>
+                    <button onclick="openModal('impact-modal')" class="w-full py-4 rounded-xl font-bold text-eco-clay bg-orange-50 hover:bg-eco-clay hover:text-white transition-colors flex justify-center items-center gap-2">
+                        ស្វែងយល់ពីឥទ្ធិពល <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                    </button>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: ABOUT US (TEAM) -->
-    <section id="team" class="py-24 bg-eco-paper bg-texture">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <span class="text-eco-gold font-bold tracking-widest uppercase text-sm mb-2 block">About Us</span>
-            <h2 class="font-serif text-4xl md:text-5xl text-eco-charcoal font-bold mb-16">The Chemistry Club Initiative</h2>
-
-            <!-- Team Avatars -->
-            <div class="flex flex-wrap justify-center gap-12 md:gap-24 mb-20">
-                
-                <!-- Maneth (Girl) -->
-                <div class="group flex flex-col items-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-eco-mint border-4 border-white shadow-premium overflow-hidden mb-4 group-hover:-translate-y-2 transition-transform duration-300 relative">
-                        <!-- Abstract Minimalist Avatar (Girl 1) -->
-                        <svg viewBox="0 0 100 100" class="w-full h-full pt-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="40" r="18" fill="#F0CBA4"/>
-                            <path d="M25 100 C 25 70, 75 70, 75 100" fill="#4A7C59"/>
-                            <path d="M30 45 C 30 20, 70 20, 70 45 L 75 60 C 75 60, 50 65, 25 60 Z" fill="#2D2D2D"/>
-                        </svg>
-                    </div>
-                    <h4 class="font-bold text-xl text-eco-charcoal">Maneth</h4>
-                    <p class="text-sm text-eco-gold font-medium uppercase tracking-wider mt-1">Co-Founder</p>
-                </div>
-
-                <!-- Lika (Girl) -->
-                <div class="group flex flex-col items-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-eco-mint border-4 border-white shadow-premium overflow-hidden mb-4 group-hover:-translate-y-2 transition-transform duration-300 relative">
-                        <!-- Abstract Minimalist Avatar (Girl 2) -->
-                        <svg viewBox="0 0 100 100" class="w-full h-full pt-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="40" r="18" fill="#E2B78C"/>
-                            <path d="M25 100 C 25 70, 75 70, 75 100" fill="#B59A5C"/>
-                            <path d="M32 45 C 32 15, 68 15, 68 45 L 72 65 C 72 65, 50 60, 28 65 Z" fill="#3A2E26"/>
-                        </svg>
-                    </div>
-                    <h4 class="font-bold text-xl text-eco-charcoal">Lika</h4>
-                    <p class="text-sm text-eco-gold font-medium uppercase tracking-wider mt-1">Co-Founder</p>
-                </div>
-
-                <!-- Vadh (Guy) -->
-                <div class="group flex flex-col items-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-eco-mint border-4 border-white shadow-premium overflow-hidden mb-4 group-hover:-translate-y-2 transition-transform duration-300 relative">
-                        <!-- Abstract Minimalist Avatar (Guy) -->
-                        <svg viewBox="0 0 100 100" class="w-full h-full pt-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="40" r="18" fill="#D4A373"/>
-                            <path d="M25 100 C 25 70, 75 70, 75 100" fill="#1A4A38"/>
-                            <path d="M33 35 C 33 20, 67 20, 67 35 C 67 40, 62 42, 50 42 C 38 42, 33 40, 33 35 Z" fill="#222222"/>
-                        </svg>
-                    </div>
-                    <h4 class="font-bold text-xl text-eco-charcoal">Vadh</h4>
-                    <p class="text-sm text-eco-gold font-medium uppercase tracking-wider mt-1">Co-Founder</p>
-                </div>
-
+    <!-- PAGE 4: FOOTER -->
+    <footer class="bg-eco-charcoal text-white pt-16 pb-8 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-12">
+            <!-- Company Info -->
+            <div>
+                <h2 class="en-font text-3xl font-bold text-eco-gold mb-4">EcoBond</h2>
+                <p class="text-white/60 leading-relaxed">
+                    នវានុវត្តន៍បៃតងដើម្បីផ្លាស់ប្តូរកាកសំណល់ទៅជាដំណោះស្រាយហេដ្ឋារចនាសម្ព័ន្ធដ៏រឹងមាំសម្រាប់ប្រទេសកម្ពុជា។
+                </p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">ម៉ឺនុយ</h4>
+                <ul class="space-y-3 text-white/70">
+                    <li><a href="#home" class="hover:text-eco-gold transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> ទំព័រដើម</a></li>
+                    <li><a href="#who-we-are" class="hover:text-eco-gold transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> អំពីយើង</a></li>
+                </ul>
             </div>
 
-            <a href="#home" class="inline-flex items-center gap-3 bg-eco-charcoal text-white px-8 py-3 rounded-full font-bold hover:bg-eco-forest transition-colors shadow-lg">
-                <i data-lucide="arrow-up" class="w-4 h-4"></i> Return to Top
-            </a>
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">ទំនាក់ទំនង</h4>
+                <ul class="space-y-3 text-white/70">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="phone" class="w-5 h-5 text-eco-gold shrink-0 mt-0.5"></i>
+                        <span class="en-font">+855 11 234 108<br>+855 86 897 160<br>+855 11 984 446</span>
+                    </li>
+                    <li class="flex items-start gap-3 mt-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-eco-gold shrink-0 mt-0.5"></i>
+                        <span>ភ្នំពេញ, កម្ពុជា</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-eco-charcoal py-8 text-center text-white/50 text-sm border-t border-white/10">
-        <p>&copy; 2026 Green Village Road Enterprise. The Chemistry Club Initiative.</p>
+        <div class="text-center text-white/40 text-sm pt-8 border-t border-white/10 en-font">
+            &copy; 2026 EcoBond. All rights reserved.
+        </div>
     </footer>
 
-    <!-- Initialize Icons and Logic -->
+    <!-- ================= MODALS (THE SUB-PAGES) ================= -->
+
+    <!-- 1. Process Modal -->
+    <div id="process-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-eco-charcoal/80 backdrop-blur-sm" onclick="closeModal('process-modal')"></div>
+        <div class="bg-eco-paper w-full max-w-4xl max-h-[90vh] rounded-[2rem] shadow-2xl relative z-10 flex flex-col overflow-hidden">
+            <button onclick="closeModal('process-modal')" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-red-100 hover:text-red-500 transition-colors z-20">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="p-8 md:p-12 overflow-y-auto custom-scrollbar">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-eco-mint flex items-center justify-center"><i data-lucide="settings" class="w-5 h-5 text-eco-forest"></i></div>
+                    <h2 class="text-3xl font-bold text-eco-charcoal">ដំណើរការរបស់យើង</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-10">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="text-eco-gold font-bold text-xl mb-4 en-font">Liquid Pave Method</div>
+                        <p class="text-eco-charcoal/80 leading-relaxed mb-4">
+                            វិធីសាស្រ្ត "សើម" ដែលរចនាឡើងដោយមិនប្រើប្រាស់កម្តៅឧស្សាហកម្ម។ យើងយកកាកសំណល់ផ្លាស្ទិកដែលត្រូវបានកាត់ជាចំណិតតូចៗ មកលាយបញ្ចូលគ្នាជាមួយផេះជីវៈ (Bio-Ash ពីសំបករុក្ខជាតិ) កំបោរស (Lime) និងទឹក។
+                        </p>
+                        <p class="text-eco-charcoal/80 leading-relaxed">
+                            វត្ថុធាតុទាំងនេះនឹងបង្កើតបានជាសមាសធាតុស្អិតជាប់គ្នាដូចស៊ីម៉ង់ត៍ ដែលអាចចាក់បំពេញរណ្តៅបានយ៉ាងងាយស្រួល។
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="text-eco-clay font-bold text-xl mb-4 en-font">Dry Pave Method</div>
+                        <p class="text-eco-charcoal/80 leading-relaxed mb-4">
+                            វិធីសាស្រ្ត "ស្ងួត" ដោយប្រើប្រាស់បច្ចេកវិទ្យាសង្កត់ដោយចំហាយទឹក (Steam Compression)។ យើងលាយបញ្ចូលគ្នានូវកាកសំណល់បន្លែ/សរីរាង្គ ជាមួយផ្លាស្ទិកក្នុងបរិមាណសមស្រប។
+                        </p>
+                        <p class="text-eco-charcoal/80 leading-relaxed">
+                            ម៉ាស៊ីនសង្កត់កម្តៅនឹងរំលាយផ្លាស្ទិកតែបន្តិចបន្តួចប៉ុណ្ណោះ ដើម្បីឱ្យវាដើរតួជាកាវស្អិត ភ្ជាប់កាកសំណល់សរីរាង្គបង្កើតបានជាដុំឥដ្ឋ ឬក្បឿងដ៏រឹងមាំ ដោយមិនបញ្ចេញឧស្ម័នពុល។
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Products & Calculator Modal -->
+    <div id="products-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-eco-charcoal/80 backdrop-blur-sm" onclick="closeModal('products-modal')"></div>
+        <div class="bg-eco-mint w-full max-w-5xl max-h-[95vh] rounded-[2rem] shadow-2xl relative z-10 flex flex-col overflow-hidden border border-white">
+            <button onclick="closeModal('products-modal')" class="absolute top-6 right-6 p-2 bg-white rounded-full text-gray-500 hover:bg-red-100 hover:text-red-500 transition-colors z-20 shadow-sm">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="p-8 md:p-12 overflow-y-auto custom-scrollbar">
+                
+                <h2 class="text-3xl font-bold text-eco-charcoal mb-10 text-center">ផលិតផល និងការគណនាផលប៉ះពាល់</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-10">
+                    <!-- Products Desc -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 class="en-font text-xl font-bold text-eco-forest flex items-center gap-2 mb-3"><i data-lucide="droplet" class="w-5 h-5"></i> Liquid Pave</h3>
+                            <p class="text-eco-charcoal/80 text-sm leading-relaxed">
+                                ស័ក្តិសមបំផុតសម្រាប់ជួសជុលសំបុកមាន់ និងតភ្ជាប់ផ្លូវដែលខូចខាតនៅតាមបណ្តាភូមិស្រុក ឬទីប្រជុំជនតូចៗ ដោយមិនតម្រូវឱ្យមានគ្រឿងចក្រធុនធ្ងន់ក្នុងការអ៊ុតកៅស៊ូ។
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 class="en-font text-xl font-bold text-eco-clay flex items-center gap-2 mb-3"><i data-lucide="box" class="w-5 h-5"></i> Dry Pave</h3>
+                            <p class="text-eco-charcoal/80 text-sm leading-relaxed">
+                                ដុំឥដ្ឋឬក្បឿងរឹងមាំ ប្រើប្រាស់បានយ៉ាងល្អសម្រាប់ការសាងសង់ ការក្រាលទីធ្លាសាលារៀន សួនច្បារសាធារណៈ និងកម្រាលក្នុងទីតាំងឯកជន។
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Calculator -->
+                    <div class="bg-white rounded-3xl p-8 shadow-premium border border-eco-gold/20">
+                        <h3 class="font-bold text-lg text-eco-charcoal mb-6 flex items-center gap-2"><i data-lucide="calculator" class="w-5 h-5 text-eco-gold"></i> កម្មវិធីគណនាអត្ថប្រយោជន៍</h3>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-bold text-eco-charcoal mb-2">បរិមាណផ្លាស្ទិក (គីឡូក្រាម)</label>
+                                <input type="number" id="calc-plastic" placeholder="បញ្ចូលចំនួន..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-eco-gold outline-none en-font">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-eco-charcoal mb-2">បរិមាណកាកសំណល់កសិកម្ម (គីឡូក្រាម)</label>
+                                <input type="number" id="calc-farm" placeholder="បញ្ចូលចំនួន..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-eco-gold outline-none en-font">
+                            </div>
+                            
+                            <button onclick="calculateEco()" class="w-full bg-eco-forest text-white py-3 rounded-xl font-bold hover:bg-eco-charcoal transition-colors mt-2">
+                                គណនាឥឡូវនេះ
+                            </button>
+
+                            <!-- Results -->
+                            <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-100">
+                                <div class="text-center">
+                                    <div class="text-[11px] text-gray-500 font-bold uppercase mb-1">ផ្ទៃផ្លូវអាចជួសជុលបាន</div>
+                                    <div id="res-road" class="text-2xl font-bold text-eco-charcoal en-font">0 <span class="text-base text-gray-400 font-normal">m²</span></div>
+                                </div>
+                                <div class="text-center border-l border-gray-100">
+                                    <div class="text-[11px] text-gray-500 font-bold uppercase mb-1">ប្រាក់ចំណូលកសិករ</div>
+                                    <div id="res-income" class="text-2xl font-bold text-eco-gold en-font">0 <span class="text-base font-khmer font-bold">៛</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Impact Modal -->
+    <div id="impact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-eco-charcoal/80 backdrop-blur-sm" onclick="closeModal('impact-modal')"></div>
+        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[2rem] shadow-2xl relative z-10 flex flex-col overflow-hidden">
+            <button onclick="closeModal('impact-modal')" class="absolute top-6 right-6 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-red-100 hover:text-red-500 transition-colors z-20">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="p-8 md:p-12 overflow-y-auto custom-scrollbar">
+                <div class="text-center mb-10">
+                    <span class="en-font text-eco-clay font-bold tracking-widest uppercase text-sm mb-2 block">EcoBond Impact</span>
+                    <h2 class="text-3xl font-bold text-eco-charcoal">ឥទ្ធិពលរបស់យើង</h2>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="flex gap-4 p-5 rounded-2xl bg-orange-50/50 border border-orange-100">
+                        <div class="mt-1"><i data-lucide="tractor" class="w-6 h-6 text-eco-clay"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-eco-charcoal mb-1">កសិកម្ម</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">ជួយផ្តល់ទីផ្សារបន្ថែមដល់កសិករ តាមរយៈការប្រមូលទិញសំបករុក្ខជាតិ និងកាកសំណល់សរីរាង្គយកមកធ្វើជាវត្ថុធាតុដើម។</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 p-5 rounded-2xl bg-blue-50/50 border border-blue-100">
+                        <div class="mt-1"><i data-lucide="briefcase" class="w-6 h-6 text-blue-500"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-eco-charcoal mb-1">ការងារ</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">បង្កើនឱកាសការងារនៅក្នុងសហគមន៍ ទាំងក្នុងការប្រមូលសំណល់ និងដំណើរការផលិត។</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-5 rounded-2xl bg-gray-50/80 border border-gray-200">
+                        <div class="mt-1"><i data-lucide="factory" class="w-6 h-6 text-gray-600"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-eco-charcoal mb-1">ឧស្សាហកម្ម</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">បង្កើតការច្នៃប្រឌិតថ្មីក្នុងវិស័យផលិតសម្ភារៈសំណង់ ដោយកាត់បន្ថយការពឹងផ្អែកលើស៊ីម៉ង់ត៍សុទ្ធ។</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-5 rounded-2xl bg-eco-mint/50 border border-eco-mint">
+                        <div class="mt-1"><i data-lucide="leaf" class="w-6 h-6 text-eco-forest"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-eco-charcoal mb-1">បរិស្ថាន</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">កាត់បន្ថយបរិមាណកាកសំណល់ផ្លាស្ទិកដែលហូរចូលទៅក្នុងធម្មជាតិ និងកាត់បន្ថយការដុតរុក្ខជាតិចោល។</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-5 rounded-2xl bg-yellow-50/50 border border-yellow-100 sm:col-span-2">
+                        <div class="mt-1"><i data-lucide="building-2" class="w-6 h-6 text-eco-gold"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-eco-charcoal mb-1">ហេដ្ឋារចនាសម្ព័ន្ធ</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">ជួយឱ្យផ្លូវតាមភូមិស្រុកបានស្អាតល្អ តាមរយៈការចាក់ប៉ះប៉ូវដោយ Liquid Pave និងជួយកែលម្អទីធ្លាសាលារៀន សួនច្បារ ឬទីតាំងឯកជន ដោយការក្រាលឥដ្ឋ Dry Pave ប្រកបដោយសោភ័ណភាព និងធន់រឹងមាំ។</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        // Initialize Lucide Icons
+        // Initialize Icons
         lucide.createIcons();
 
-        // Calculator Logic
-        function calculateImpact() {
-            // Get inputs
-            const plasticKg = parseFloat(document.getElementById('plastic-input').value) || 0;
-            const farmKg = parseFloat(document.getElementById('farm-input').value) || 0;
-
-            // Mathematical Logic (Based on project specs)
-            // 10kg plastic = ~5 sqm patch (Multiplier: 0.5)
-            const sqmPatched = (plasticKg * 0.5).toFixed(1);
-            
-            // Farmer income: ~$0.37 per kg
-            const income = (farmKg * 0.37).toFixed(2);
-
-            // Update UI
-            document.getElementById('result-sqm').innerText = sqmPatched + " m²";
-            document.getElementById('result-income').innerText = "$" + income;
-
-            // Show results with fade-in effect
-            const resultsArea = document.getElementById('results-area');
-            resultsArea.classList.remove('hidden');
-            
-            // Trigger reflow for transition
-            void resultsArea.offsetWidth;
-            
-            resultsArea.classList.remove('opacity-0');
-            resultsArea.classList.add('opacity-100');
+        // Modal Logic
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            // Trigger animation
+            setTimeout(() => {
+                modal.children[1].classList.add('modal-enter-active');
+                modal.children[1].classList.remove('modal-enter');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
-        // Add scroll behavior for navigation highlighting (optional enhancement)
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.children[1].classList.add('modal-exit-active');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.children[1].classList.remove('modal-exit-active');
+                modal.children[1].classList.add('modal-enter');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Initialize modal states
+        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+            if(modal.children[1]) modal.children[1].classList.add('modal-enter');
         });
+
+        // Calculator Logic
+        function calculateEco() {
+            const plasticKg = parseFloat(document.getElementById('calc-plastic').value) || 0;
+            const farmKg = parseFloat(document.getElementById('calc-farm').value) || 0;
+
+            // Math Logic (Adjustable)
+            // Example: 10kg plastic = ~5 sqm patch (Multiplier: 0.5)
+            const sqmPatched = (plasticKg * 0.5).toFixed(1);
+            
+            // Farmer income: 1500 Riel per kg
+            const incomeRiel = farmKg * 1500;
+            
+            // Format number to Cambodian currency style (e.g. 15,000)
+            const formattedIncome = new Intl.NumberFormat('km-KH').format(incomeRiel);
+
+            // Animate Numbers
+            animateValue("res-road", sqmPatched, " m²", false);
+            document.getElementById('res-income').innerHTML = formattedIncome + ' <span class="text-base font-khmer font-bold text-eco-charcoal">៛</span>';
+        }
+
+        // Helper function for quick number animation
+        function animateValue(id, end, suffix, isCurrency) {
+            const obj = document.getElementById(id);
+            obj.innerHTML = end + `<span class="text-base text-gray-400 font-normal">${suffix}</span>`;
+            obj.classList.add('scale-110', 'text-eco-forest');
+            setTimeout(() => {
+                obj.classList.remove('scale-110', 'text-eco-forest');
+            }, 200);
+        }
     </script>
 </body>
 </html>
